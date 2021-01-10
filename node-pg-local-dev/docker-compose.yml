@@ -1,0 +1,25 @@
+version: "3"
+services:
+  node:
+    build: .
+    container_name: node-docker
+    ports:
+      - 8080:3000
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - pg
+  pg:
+    image: postgres:9.3
+    restart: always
+    ports:
+      - 8888:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: devdb
+volumes:
+  postgres-data:
