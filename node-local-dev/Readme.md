@@ -2,14 +2,16 @@
 
 Source: https://auth0.com/blog/use-docker-to-create-a-node-development-environment/
 
+## Without docker-compose
+
 This setup keeps node_modules, package.json and yarn.lock and mounts it in the container.
 
-## Build
+### Build
 `docker build -t node-docker .`
 
 Create container from `node:latest` container, exposes 3000. Does not do setup.
 
-## Run
+### Run
 
 ```
 docker run --rm -it --name node-docker \
@@ -18,3 +20,11 @@ docker run --rm -it --name node-docker \
 ```
 
 The container has no node packages, I installed it manually the first time. However since package.json and yarn.lock is now in the repo, if container goes away, there is no need to run the install commands again.
+
+## With docker-compose
+
+### Run
+`docker-compose run --rm --service-ports nod_dev_env`
+
+### Build (optional)
+If you make changes to Dockerfile `docker-compose up --build`. Without it, it'll use existing image.
