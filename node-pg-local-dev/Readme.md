@@ -4,6 +4,8 @@ This folder contains an Express app running in an container that connects to a P
 
 Though in this example PG exposed to public through port: 8888, the exprses app is able to connect through Docker by using host: `node-pg-local-dev_pg_1`.
 
+The local src dir is mounted in the container as a volume and any changes made to the files from host are seen by the container (therefore express restarts).
+
 ### Build
 `docker-compose up --build`
 

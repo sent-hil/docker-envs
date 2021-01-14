@@ -1,12 +1,18 @@
 version: "3"
 services:
-  node:
-    build: .
-    container_name: node-docker
+  web:
+    image: "node:latest"
+    entrypoint:
+      - "sh"
+      - "-c"
+      - "npm install && npm start"
+    working_dir: "/usr/src/app"
     ports:
-      - 8080:3000
+      - "8080:8080"
     volumes:
-      - ./:/usr/src/app
+      - ".:/usr/src/app"
+      # Don't sync the node_modules directory back to the client.
+      - "/usr/src/app/node_modules"
     depends_on:
       - pg
   pg:
