@@ -3,7 +3,12 @@ services:
   nod_dev_env:
     build: .
     container_name: node-docker
+    entrypoint:
+      - "sh"
+      - "-c"
+      - "npm install && npm start"
     ports:
       - 8080:3000
     volumes:
       - ./:/usr/src/app
+      - /usr/src/app/node_modules
