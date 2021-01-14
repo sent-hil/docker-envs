@@ -19,7 +19,7 @@ docker run --rm -it --name node-docker \
     node-docker
 ```
 
-The container has no node packages, I installed it manually the first time. However since package.json and yarn.lock is now in the repo, if container goes away, there is no need to run the install commands again.
+The container has no node packages, I installed it manually the first time. However since package-lock.json is now in the repo, if container goes away, there is no need to run the install commands again.
 
 ## With docker-compose
 
