@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    image: "ruby:2.7.2"
+    container_name: sinatra
+    entrypoint:
+      - sh
+      - -c
+      - bundle install && bundle exec rackup --host 0.0.0.0 -p 4568
+    volumes:
+      - ".:/usr/src/app"
+    ports:
+      - 4568:4568
+    working_dir: "/usr/src/app"
