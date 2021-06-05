@@ -1,0 +1,40 @@
+version: "3"
+services:
+  webapp:
+    build: .
+    entrypoint:
+      - "sh"
+      - "-c"
+      - "mix do ecto.create ecto.migrate phx.server"
+    #    depends_on:
+    #      - database
+    restart: always
+    ports:
+      - "5000:4000"
+    environment:
+      DB_USER: postgres
+      DB_PASS: pass
+      DB_HOST: phoenix_pg_database_1 # requires docker-compose app to be name "liveview"
+    volumes:
+      - ./config:/app/config
+      - ./lib:/app/lib
+      - ./priv:/app/priv
+      - ./test:/app/test
+      - ./assets/css:/app/assets/css
+      - ./assets/js:/app/assets/js
+      - ./assets/static:/app/assets/static
+      - ./_build:/app/_build # Cache compilations
+      - ./.elixir_ls:/app/.elixir_ls # Cache compilations
+      - ./deps:/app/deps # Cache compilations
+#  database:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: pass
+#    volumes:
+#      - liveview-pg-data:/var/lib/postgresql/data
+#    ports:
+#      - 8889:5432
+#volumes:
+#  liveview-pg-data:
