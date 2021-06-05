@@ -6,3 +6,4 @@ Since I got my new Macbook in 2021, I have been making an effort to do developme
 - node-pg-local-dev - Builds on top of node-local-dev to connect Express app to PG running in a different container. PG data is stored in a persistent volume.
 - sinatra - Uses base `ruby:2.7.2` image, mounts repo as volume in Docker. It's a Sinatra app that can restart based on changes in files.
 - sinatra - Similar to sinatra, but uses Dockerfile to create the container.
+- nuxt-tailwind - Uses base `node:latest` image. It's a nuxt app with tailwind and can restart based on changes in files.
